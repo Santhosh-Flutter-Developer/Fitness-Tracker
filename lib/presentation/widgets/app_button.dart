@@ -46,9 +46,18 @@ class AppButton extends StatelessWidget {
       width: width,
       height: bHeight,
       decoration: BoxDecoration(
-        color: buttonColor ?? kPrimaryButtonBackground,
+       
         borderRadius: BorderRadius.circular(borderRadius ?? kRadius),
         border: boxBorder,
+        gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                  Color(0xFFCA0DBD),
+                                  Color(0xFFE6BA2C),
+                                 ],
+                                 
+                                 ),
       ),
       child: Visibility(
         visible: !isLoading,
@@ -77,7 +86,9 @@ class AppButton extends StatelessWidget {
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 
-                style: titleStyle ?? Get.textTheme.labelLarge,
+                style: titleStyle ?? Get.textTheme.labelLarge?.copyWith(
+                  color: kWhite
+                ),
               ),
         ),
       ),
