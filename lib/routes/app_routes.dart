@@ -11,6 +11,12 @@ class Go {
         opaque: opaque);
   }
 
+   static Future<T?> toNamed<T>(String page, {dynamic arguments, Transition? transition, bool? opaque, Duration? duration}) async {
+    return await Get.toNamed<T>(page,
+        arguments: arguments,
+        );
+  }
+
   /// Similar to **Navigation.pushReplacement**
   static Future<dynamic> off(dynamic page, {dynamic arguments, Transition? transition}) async {
     return await Get.off(

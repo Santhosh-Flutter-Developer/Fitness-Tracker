@@ -1,7 +1,8 @@
 import 'package:fitness_tracker/core/bindings/app_bindings.dart';
 import 'package:fitness_tracker/core/constants/app_styles.dart';
 import 'package:fitness_tracker/core/utils/route_observer.dart';
-import 'package:fitness_tracker/presentation/pages/splash/view/splash_view.dart';
+import 'package:fitness_tracker/routes/route_pages.dart';
+import 'package:fitness_tracker/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +26,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(360,800),
       minTextAdapt: true,
       splitScreenMode: true,
       useInheritedMediaQuery: true,
@@ -35,26 +35,17 @@ class MyApp extends StatelessWidget {
           navigatorObservers: [customRouteObserver],
           debugShowCheckedModeBanner: false,
           initialBinding: AppBindings(),
+          getPages: RoutePages.routes,
+          initialRoute:MediaQuery.of(context).size.width>1000?Routes.INTRO: Routes.SPLASH,
           theme: ThemeData(
             useMaterial3: false,
             textTheme: kAppTextTheme,
             tooltipTheme: kAppTooltipTheme,
             appBarTheme: kAppBarTheme,
           ),
-          builder: (ctx, child) {
-            var mediaQuery = MediaQuery.of(ctx);
-            return MediaQuery(
-              data: mediaQuery.copyWith(
-                textScaler: TextScaler.noScaling,
-              ),
-              child: child!,
-            );
-          },
-          home: child,
+          
         );
       },
-      
-      child: SplashView()
     );
   }
 }
